@@ -1,0 +1,34 @@
+<div class="container-fluid paddingTP30">
+    <h3 class="page-title">{{setTitle}}</h3>
+    <form ng-submit="editUserSubmit()" name="editUserForm" class="col-md-7">
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input ng-model="editUser.firstName" type="text" required class="form-control" id="firstName" placeholder="Enter first name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input ng-model="editUser.lastName" type="text" required class="form-control" id="lastName" placeholder="Enter last name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="editUser.email" type="email" ng-disabled="true" required class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label for="" class="col-md-12">Gender</label>
+                <label class="col-md-6">
+                    <input ng-model="editUser.gender" type="radio" name="gender" id="male" value="Male" checked> Male
+                </label>
+                <label class="col-md-6">
+                    <input ng-model="editUser.gender" type="radio" name="gender" id="female" value="Female"> Female
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">Upload file</label>
+            <input type="file" id="exampleInputFile">
+        </div>
+        <button type="submit" button-click ng-disabled="editUserForm.$invalid" class="btn btn-primary">Save</button>
+        <!-- <button type="submit" ng-disabled="editUserForm.$invalid" class="btn btn-primary">Save</button> -->
+    </form>
+</div>

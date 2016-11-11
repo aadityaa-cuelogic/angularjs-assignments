@@ -1,0 +1,46 @@
+<div class="container-fluid paddingTP30" ng-init="userList()">
+    <tab-menu tab-menu-list="subTabMenus"></tab-menu>
+    <div class="paddingTB20 clearfix">
+        <select ng-model="typeOfOrder" class="pull-left">
+            <option value="">Sort By</option>
+            <option value="firstName">Employee Name</option>
+            <option value="email">Employee Email</option>
+            <option value="gender">Gender</option>
+        </select>
+        <a ui-sref="base.user" class="btn btn-info pull-right" role="button">Add user</a>
+    </div>
+
+    <div ng-show="showMultiDelete" ng-init="showMultiDelete=false"  class="paddingTB20 clearfix">
+        <button button-click ng-click="deleteUser()" class="btn btn-danger pull-right deleteBtn">Delete Selected</button>
+    </div>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <table class="table table-striped">
+                <thead>
+                    <th>Image</th>
+                    <th>Employee Name</th>
+                    <th>Employee Email</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="singleUser in getUsers | orderBy:typeOfOrder">
+                        <td ng-dblclick="editUser(singleUser.id)" ng-click="customStyle = selectRow(customStyle, singleUser.id)" ng-style="customStyle"><img height="100" width="100" src="{{blackSpinner}}" lazy-img="{{singleUser.image}}"></td>
+                        <td ng-dblclick="editUser(singleUser.id)" ng-click="customStyle = selectRow(customStyle, singleUser.id); " ng-style="customStyle">{{singleUser.firstName}} {{singleUser.lastName}}</td>
+                        <td ng-dblclick="editUser(singleUser.id)" ng-click="customStyle = selectRow(customStyle, singleUser.id); " ng-style="customStyle">{{singleUser.email}}</td>
+                        <td ng-dblclick="editUser(singleUser.id)" ng-click="customStyle = selectRow(customStyle, singleUser.id); " ng-style="customStyle">{{singleUser.gender}}</td>
+                        <!-- <td><a ui-sref="base.editUser" class="btn btn-warning" role="button">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;<a ui-sref="base.editUser" class="btn btn-danger" role="button">Delete</a></td> -->
+                        <td>
+                            <button ng-click="editUser(singleUser.id)" class="btn btn-warning">Edit</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <!-- <button ng-click="deleteUser(singleUser.id)" class="btn btn-danger">Delete</button> -->
+                            <button click-this="deleteUser(singleUser.id)" custom-confirm="{{singleUser.id}}" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Tab panes -->
